@@ -1,0 +1,32 @@
+# Java
+target/
+.gradle/
+build/
+*.class
+
+# Node / Next
+node_modules/
+.next/
+out/
+dist/
+coverage/
+
+# Logs
+*.log
+logs/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Docker volumes/local data
+.tmp/
+
+# Mac
+.DS_Store
