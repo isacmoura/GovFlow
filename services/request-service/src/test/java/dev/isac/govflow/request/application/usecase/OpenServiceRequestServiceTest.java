@@ -3,6 +3,12 @@ package dev.isac.govflow.request.application.usecase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.junit.jupiter.api.Test;
 
 import dev.isac.govflow.request.application.port.in.OpenServiceRequestCommand;
@@ -29,12 +35,24 @@ class OpenServiceRequestServiceTest {
 
   private static class InMemoryServiceRequestRepository implements ServiceRequestRepository {
 
-    private ServiceRequest savedServiceRequest;
+    private final Map<UUID, ServiceRequest> serviceRequests = new HashMap<>();
 
     @Override
     public ServiceRequest save(ServiceRequest serviceRequest) {
-      savedServiceRequest = serviceRequest;
-      return savedServiceRequest;
+      serviceRequests.put(serviceRequest.getId(), serviceRequest);
+      return serviceRequest;
+    }
+
+    @Override
+    public Optional<ServiceRequest> findById(UUID id) {
+      return Optional.ofNullable(serviceRequests.get(id));
+    }
+
+    @Override
+    public List<ServiceRequest> findAll() {
+      return serviceRequests.values()
+          .stream()
+          .toList();
     }
   }
 
