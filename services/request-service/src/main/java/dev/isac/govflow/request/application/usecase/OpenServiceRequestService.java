@@ -1,5 +1,6 @@
 package dev.isac.govflow.request.application.usecase;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dev.isac.govflow.request.application.port.in.OpenServiceRequestCommand;
@@ -8,7 +9,8 @@ import dev.isac.govflow.request.application.port.out.ProtocolGenerator;
 import dev.isac.govflow.request.application.port.out.ServiceRequestRepository;
 import dev.isac.govflow.request.domain.model.ServiceRequest;
 
-public class OpenServiceRequestService implements OpenServiceRequestUseCase {
+@Service
+class OpenServiceRequestService implements OpenServiceRequestUseCase {
   private final ServiceRequestRepository serviceRequestRepository;
   private final ProtocolGenerator protocolGenerator;
 
